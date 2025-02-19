@@ -94,6 +94,6 @@ python3 generate_RELLM.py \
     --reference_field "emotion"
 ```
 
-### 4. Evaluate result
+### 4. Evaluate empathetic score with ER/EX
 
 Evaluate model performance with a computable empathy [metric](https://github.com/behavioral-data/Empathy-Mental-Health.git)
