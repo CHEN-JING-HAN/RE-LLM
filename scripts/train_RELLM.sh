@@ -13,7 +13,7 @@ export NCCL_IB_GID_INDEX=3
 export PATH=/usr/local/cuda/bin:$PATH
 
 
-python -m torch.distributed.run --nproc_per_node=1 --master_port=29509 train_avdans_w2v2cat.py \
+python -m torch.distributed.run --nproc_per_node=1 --master_port=29509 train_RELLM.py \
     --deepspeed config/dp_config_zero1.json \
     \
     --dataset_save_dir ${DATA_ROOT} \
