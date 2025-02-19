@@ -2,4 +2,4 @@
 
 ## Overview
 
-![framework](path/to/image.jpg)
+![framework](Framework.jpg)
