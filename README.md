@@ -21,7 +21,7 @@ pip install -r requirements.txt
 ### 2. Training the Model
 The following training process is the same as the BLSP-Emo
 
-**Pre-processing：
+**Pre-processing：**
 Leverage Qwen-7B to generate the continuation.
 ```bash
 python -u emotion_text_generation.py generate \
@@ -32,12 +32,12 @@ python -u emotion_text_generation.py generate \
     --rank 0 \
     --use_emotion True
 ```
-Clean the continuations
+**Clean the continuations**
 ```bash
 python data_process/clean_noise_examples.py \
     --input_dir examples/train/emotion_labels
 ```
-Offline process
+**Offline process**
 ```bash
 emotion_instruction="Continue the following sentence based on the conveyed emotion tone in a coherent style: "
 
@@ -57,7 +57,7 @@ python src/instruction_dataset.py offline \
     --use_emotion True
 ```
 
-Train the RE-LLM model:
+**Train the RE-LLM model:**
 
 ```bash
 export blsp_path=~/pretrain_checkpoints
