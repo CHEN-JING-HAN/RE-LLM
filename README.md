@@ -24,7 +24,7 @@ The following training process is the same as the BLSP-Emo
 **Pre-processing：**
 Leverage Qwen-7B to generate the continuation.
 ```bash
-python -u emotion_text_generation.py generate \
+python -u emotion_text_generation_RELLM.py generate \
     --qwen_path ${qwen_path} \
     --manifest examples/train/train_iemocap.jsonl \
     --lab_dir examples/train/emotion_labels \
@@ -41,7 +41,7 @@ python data_process/clean_noise_examples.py \
 ```bash
 emotion_instruction="Continue the following sentence based on the conveyed emotion tone in a coherent style: "
 
-python src/instruction_dataset.py offline \
+python src/instruction_dataset_RELLM.py offline \
     --dataroot examples/train/emotion_labels \
     --manifest_files "*_clean.jsonl" \
     --lm_path ${qwen_path} \
@@ -60,11 +60,7 @@ python src/instruction_dataset.py offline \
 **Train the RE-LLM model:**
 
 ```bash
-export blsp_path=~/pretrain_checkpoints
-export DATA_ROOT=examples/train/emotion_labels/processed
-export SAVE_ROOT=~/sft_checkpoints
-
-bash scripts/train_emotion.sh
+bash scripts/train_RELLM.sh
 ```
 
 ### 3. Inference
@@ -72,7 +68,7 @@ bash scripts/train_emotion.sh
 Response Generation
 
 ```bash
-python3 generate.py \
+python3 generate_RELLM.py \
     --input_file "examples/test/test_alpaca.jsonl" \
     --output_file "examples/test/output_alpaca.jsonl" \
     --blsp_model $blsp_path \
@@ -89,7 +85,7 @@ instruction="Please identify the emotion tone of the speech provided below. Sele
 
 Speech: "
 
-python3 generate.py \
+python3 generate_RELLM.py \
     --input_file "examples/test/test_iemocap.jsonl" \
     --output_file "examples/test/output_iemocap.jsonl" \
     --blsp_model $blsp_path \
